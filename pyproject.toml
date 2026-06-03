@@ -1,0 +1,31 @@
+[build-system]
+requires = [
+    "setuptools>=68",
+    "wheel"
+]
+
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "najumi-storage"
+version = "1.0.0"
+description = "Official Python SDK for Najumi Storage"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+
+authors = [
+  { name = "Najumi Tech", email = "info@najumitech.com" }
+]
+
+keywords = [
+  "najumi",
+  "storage",
+  "cloud-storage",
+  "sdk",
+  "python"
+]
+
+dependencies = [
+  "requests>=2.31.0"
+]
