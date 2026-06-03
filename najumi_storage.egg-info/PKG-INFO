@@ -1,0 +1,1493 @@
+Metadata-Version: 2.4
+Name: najumi-storage
+Version: 1.0.0
+Summary: Official Python SDK for Najumi Storage
+Home-page: https://github.com/najumitech/storage-python-sdk
+Author: Najumi Tech
+Author-email: Najumi Tech <info@najumitech.com>
+Maintainer: Najumi Tech
+Maintainer-email: Najumi Tech <info@najumitech.com>
+License-Expression: MIT
+Project-URL: Homepage, https://najumitech.com
+Project-URL: Documentation, https://github.com/najumitech/storage-python-sdk
+Project-URL: Source, https://github.com/najumitech/storage-python-sdk
+Project-URL: Issues, https://github.com/najumitech/storage-python-sdk/issues
+Project-URL: Changelog, https://github.com/najumitech/storage-python-sdk/releases
+Keywords: najumi,storage,cloud,cloud-storage,object-storage,file-storage,sdk,python,upload,download,api
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.31.0
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: maintainer
+Dynamic: requires-python
+
+## Najumi Storage Python SDK
+
+Official Python SDK for Najumi Storage.
+
+The Najumi Storage Python SDK provides a secure, reliable, and developer-friendly way to interact with the Najumi Storage platform directly from Python applications. It enables developers to upload files, download files, manage stored content, retrieve bucket statistics, and integrate cloud storage capabilities into their software with minimal configuration.
+
+Najumi Storage is a cloud storage platform developed by Najumi Tech to help developers, startups, businesses, and organizations store and manage files at scale through a modern API-first architecture.
+
+This SDK abstracts the underlying HTTP API and provides a clean Python interface that simplifies integration while maintaining flexibility for production workloads.
+
+Introduction
+
+The Najumi Storage Python SDK is designed for developers building applications that require secure file storage, file distribution, backups, media management, automation workflows, AI systems, and cloud-native services.
+
+Using the SDK, developers can authenticate with their Najumi Storage credentials and perform common storage operations through simple Python methods without manually handling API requests.
+
+Core Features
+
+- Secure API Key Authentication
+- File Uploads
+- File Downloads
+- File Deletion
+- File Listing
+- Bucket Statistics
+- Custom API Endpoint Support
+- Pythonic Developer Experience
+- Production-Ready Architecture
+
+Typical Use Cases
+
+The SDK can be used in a wide variety of applications, including:
+
+- Web Applications
+- SaaS Platforms
+- AI and Machine Learning Systems
+- Automation Scripts
+- Backup Solutions
+- Media Storage Platforms
+- Internal Business Tools
+- Cloud Infrastructure Services
+
+Why Use the SDK
+
+Instead of manually interacting with REST endpoints, developers can use a consistent Python interface that handles authentication, request construction, file transfers, and response processing.
+
+This reduces development time, improves maintainability, and allows teams to focus on building products rather than managing storage integrations.
+
+Requirements
+
+Before using the SDK, you will need:
+
+- A Najumi Storage account
+- A Storage Bucket
+- An Access Key
+- A Secret Key
+- Python 3.8 or later
+
+The following sections will guide you through installation, authentication, configuration, and usage examples.
+
+
+
+## Installation
+
+The Najumi Storage Python SDK can be installed using pip.
+
+Install from PyPI
+
+pip install najumi-storage
+
+Verify Installation
+
+After installation, verify that the SDK is available in your environment:
+
+from najumi_storage import Storage
+
+print("Najumi Storage SDK installed successfully")
+
+Upgrade to the Latest Version
+
+To upgrade the SDK to the latest available release:
+
+pip install --upgrade najumi-storage
+
+Virtual Environments
+
+Using a virtual environment is recommended for all Python projects.
+
+Create a virtual environment:
+
+python3 -m venv venv
+
+Activate the environment on Linux and macOS:
+
+source venv/bin/activate
+
+Activate the environment on Windows:
+
+venv\Scripts\activate
+
+Then install the SDK:
+
+pip install najumi-storage
+
+Requirements
+
+The SDK requires:
+
+- Python 3.8 or newer
+- Internet access to the Najumi Storage API
+- A valid Najumi Storage account
+- Access credentials for your storage bucket
+
+Dependencies
+
+The SDK uses the following dependency:
+
+requests>=2.31.0
+
+All required dependencies are installed automatically when installing the package from PyPI.
+
+
+
+##  Quick Start
+
+This section demonstrates the basic steps required to connect to Najumi Storage and perform your first API request.
+
+Import the SDK
+
+from najumi_storage import Storage
+
+Create a Storage Client
+
+Create a client instance using your bucket credentials.
+
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id="YOUR_BUCKET_ID",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY"
+)
+
+Custom API Endpoint (Optional)
+
+By default, the SDK communicates with the official Najumi Storage API.
+
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id="YOUR_BUCKET_ID",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY",
+    base_url="https://storage-api.najumitech.com"
+)
+
+Retrieve Files
+
+List files stored in your bucket.
+
+files = storage.files()
+
+print(files)
+
+Retrieve Bucket Statistics
+
+Get information about your storage bucket.
+
+stats = storage.stats()
+
+print(stats)
+
+Example
+
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id="YOUR_BUCKET_ID",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY"
+)
+
+files = storage.files()
+
+print(files)
+
+Next Steps
+
+After creating your first client connection, continue to the following sections to learn how to:
+
+- Authenticate requests
+- Upload files
+- Download files
+- Delete files
+- Retrieve bucket statistics
+- Handle errors
+- Follow security best practices
+
+
+## Authentication
+
+The Najumi Storage Python SDK authenticates requests using bucket-level credentials.
+
+Every API request requires valid authentication credentials associated with a Najumi Storage bucket.
+
+Required Credentials
+
+To use the SDK, you must provide the following credentials:
+
+Credential| Description
+Bucket ID| Unique identifier of your storage bucket
+Access Key| Public authentication key used to identify requests
+Secret Key| Private authentication key used to authorize requests
+
+Obtaining Credentials
+
+You can obtain your credentials from the Najumi Storage dashboard.
+
+Navigate to:
+
+Dashboard
+→ Storage Buckets
+→ Bucket Settings
+→ API Credentials
+
+Client Authentication
+
+Pass your credentials when creating a Storage client.
+
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id="YOUR_BUCKET_ID",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY"
+)
+
+Custom API Endpoint
+
+The SDK uses the official Najumi Storage API endpoint by default.
+
+storage = Storage(
+    bucket_id="YOUR_BUCKET_ID",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY",
+    base_url="https://storage-api.najumitech.com"
+)
+
+Most users should not need to override the default endpoint.
+
+Authentication Headers
+
+The SDK automatically sends the required authentication headers with every request.
+
+x-bucket-id
+x-access-key
+x-secret-key
+
+These headers are generated automatically and do not need to be manually configured.
+
+Security Recommendations
+
+To protect your storage resources:
+
+- Never expose Secret Keys in client-side applications.
+- Never commit credentials to Git repositories.
+- Store credentials in environment variables.
+- Rotate credentials periodically.
+- Use separate credentials for development and production environments.
+
+Environment Variables
+
+Using environment variables is strongly recommended.
+
+Example:
+
+import os
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id=os.getenv("NAJUMI_BUCKET_ID"),
+    access_key=os.getenv("NAJUMI_ACCESS_KEY"),
+    secret_key=os.getenv("NAJUMI_SECRET_KEY")
+)
+
+Authentication Errors
+
+If invalid credentials are supplied, the API may return authentication-related errors.
+
+Common causes include:
+
+- Incorrect Bucket ID
+- Invalid Access Key
+- Invalid Secret Key
+- Revoked credentials
+- Expired access permissions
+
+Verify your credentials before troubleshooting SDK-related issues.
+
+
+
+## Uploading Files
+
+The "upload()" method allows you to upload files from your local system to a Najumi Storage bucket.
+
+Method Signature
+
+storage.upload(
+    file_path,
+    path="/"
+)
+
+Parameters
+
+Parameter| Type| Required| Description
+file_path| str| Yes| Path to the local file
+path| str| No| Destination folder inside the bucket
+
+Upload a File
+
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id="YOUR_BUCKET_ID",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY"
+)
+
+result = storage.upload(
+    "document.pdf"
+)
+
+print(result)
+
+Upload to a Specific Folder
+
+result = storage.upload(
+    "image.png",
+    "/images"
+)
+
+print(result)
+
+Upload to Nested Folders
+
+result = storage.upload(
+    "report.pdf",
+    "/documents/reports/2026"
+)
+
+print(result)
+
+Example Response
+
+{
+  "success": true,
+  "message": "File uploaded successfully",
+  "shield": "abc123xyz",
+  "name": "document.pdf"
+}
+
+Supported File Types
+
+The SDK can upload any file type supported by your Najumi Storage account, including:
+
+- Documents
+- Images
+- Videos
+- Audio Files
+- Archives
+- Application Files
+- Backup Files
+
+Best Practices
+
+- Validate files before uploading.
+- Avoid uploading temporary files.
+- Organize uploads into folders.
+- Handle upload exceptions gracefully.
+- Use meaningful file names.
+
+Error Handling
+
+try:
+    result = storage.upload(
+        "document.pdf"
+    )
+
+    print(result)
+
+except Exception as error:
+    print(error)
+
+Notes
+
+The SDK automatically handles:
+
+- File streaming
+- Multipart form uploads
+- Authentication headers
+- Request formatting
+
+No additional configuration is required for standard uploads.
+
+
+## Downloading Files
+
+The "download()" method allows you to download files from Najumi Storage and save them to a local destination.
+
+Method Signature
+
+storage.download(
+    shield,
+    output_path
+)
+
+Parameters
+
+Parameter| Type| Required| Description
+shield| str| Yes| Unique file identifier
+output_path| str| Yes| Local destination path
+
+Download a File
+
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id="YOUR_BUCKET_ID",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY"
+)
+
+storage.download(
+    "abc123xyz",
+    "downloaded-file.pdf"
+)
+
+print("Download completed")
+
+Download to a Specific Directory
+
+storage.download(
+    "abc123xyz",
+    "/home/user/downloads/document.pdf"
+)
+
+Example
+
+storage.download(
+    shield="abc123xyz",
+    output_path="./reports/report.pdf"
+)
+
+Return Value
+
+The method returns the output path after a successful download.
+
+path = storage.download(
+    "abc123xyz",
+    "report.pdf"
+)
+
+print(path)
+
+Output:
+
+report.pdf
+
+Error Handling
+
+try:
+    storage.download(
+        "abc123xyz",
+        "document.pdf"
+    )
+
+except Exception as error:
+    print(error)
+
+Best Practices
+
+- Verify the shield identifier before downloading.
+- Ensure sufficient disk space is available.
+- Validate file integrity after download.
+- Store downloaded files in organized directories.
+- Handle download failures gracefully.
+
+Notes
+
+The SDK automatically handles:
+
+- File streaming
+- Authentication headers
+- Response processing
+- Local file writing
+
+No manual HTTP request handling is required.
+
+
+
+## Listing Files
+
+The "files()" method retrieves files stored in your Najumi Storage bucket.
+
+This method is useful for browsing bucket contents, displaying file information, building file management interfaces, and automating storage workflows.
+
+Method Signature
+
+storage.files()
+
+Retrieve Files
+
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id="YOUR_BUCKET_ID",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY"
+)
+
+files = storage.files()
+
+print(files)
+
+Example Response
+
+{
+  "success": true,
+  "files": [
+    {
+      "name": "document.pdf",
+      "shield": "abc123xyz",
+      "size": 24576,
+      "path": "/documents"
+    },
+    {
+      "name": "image.png",
+      "shield": "def456uvw",
+      "size": 102400,
+      "path": "/images"
+    }
+  ]
+}
+
+Iterate Through Files
+
+files = storage.files()
+
+for file in files["files"]:
+    print(file["name"])
+
+Display File Information
+
+files = storage.files()
+
+for file in files["files"]:
+    print("Name:", file["name"])
+    print("Shield:", file["shield"])
+    print("Size:", file["size"])
+    print("Path:", file["path"])
+    print("---")
+
+Common Use Cases
+
+The "files()" method can be used for:
+
+- Building file managers
+- Displaying bucket contents
+- Generating reports
+- Backup verification
+- Storage analytics
+- Automation workflows
+
+Error Handling
+
+try:
+    files = storage.files()
+
+    print(files)
+
+except Exception as error:
+    print(error)
+
+Best Practices
+
+- Cache results when appropriate.
+- Avoid excessive polling.
+- Filter results within your application logic.
+- Handle empty bucket responses gracefully.
+- Validate file metadata before processing.
+
+Notes
+
+The SDK automatically:
+
+- Authenticates requests
+- Retrieves bucket file information
+- Parses API responses
+- Returns structured JSON data
+
+No manual API request construction is required.
+
+
+
+##  Deleting Files
+
+The "delete()" method permanently removes a file from your Najumi Storage bucket.
+
+Use this operation with caution, as deleted files may not be recoverable depending on your storage configuration and retention policies.
+
+Method Signature
+
+storage.delete(
+    shield
+)
+
+Parameters
+
+Parameter| Type| Required| Description
+shield| str| Yes| Unique file identifier
+
+Delete a File
+
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id="YOUR_BUCKET_ID",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY"
+)
+
+result = storage.delete(
+    "abc123xyz"
+)
+
+print(result)
+
+Example Response
+
+{
+  "success": true,
+  "message": "File deleted successfully"
+}
+
+Delete Workflow Example
+
+files = storage.files()
+
+file_shield = files["files"][0]["shield"]
+
+result = storage.delete(
+    file_shield
+)
+
+print(result)
+
+Verify Deletion
+
+After deleting a file, you may retrieve the bucket file list again to confirm removal.
+
+files = storage.files()
+
+print(files)
+
+Error Handling
+
+try:
+    result = storage.delete(
+        "abc123xyz"
+    )
+
+    print(result)
+
+except Exception as error:
+    print(error)
+
+Security Considerations
+
+Before deleting files:
+
+- Verify the file identifier.
+- Confirm the operation with users when applicable.
+- Maintain backups for critical data.
+- Restrict delete permissions in production environments.
+- Log deletion events for auditing purposes.
+
+Common Use Cases
+
+The "delete()" method is commonly used for:
+
+- Removing obsolete files
+- Storage cleanup operations
+- Lifecycle management workflows
+- Automated retention policies
+- Administrative tools
+
+Best Practices
+
+- Validate file ownership before deletion.
+- Maintain backups of important content.
+- Avoid automated bulk deletions without safeguards.
+- Implement confirmation workflows in user-facing applications.
+- Monitor deletion activity through application logs.
+
+Notes
+
+The SDK automatically:
+
+- Authenticates deletion requests
+- Sends the required file identifier
+- Processes API responses
+- Returns structured response data
+
+No manual HTTP request construction is required.
+
+
+## Bucket Statistics
+
+The "stats()" method retrieves storage statistics and usage information for your Najumi Storage bucket.
+
+This method can be used to monitor storage consumption, track resource utilization, and build administrative dashboards.
+
+Method Signature
+
+storage.stats()
+
+Retrieve Bucket Statistics
+
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id="YOUR_BUCKET_ID",
+    access_key="YOUR_ACCESS_KEY",
+    secret_key="YOUR_SECRET_KEY"
+)
+
+stats = storage.stats()
+
+print(stats)
+
+Example Response
+
+{
+  "success": true,
+  "totalFiles": 125,
+  "totalFolders": 8,
+  "totalStorageUsed": 52428800,
+  "storageLimit": 1073741824
+}
+
+Display Storage Usage
+
+stats = storage.stats()
+
+print(
+    "Storage Used:",
+    stats["totalStorageUsed"]
+)
+
+Administrative Dashboard Example
+
+stats = storage.stats()
+
+print(
+    f"Files: {stats['totalFiles']}"
+)
+
+print(
+    f"Folders: {stats['totalFolders']}"
+)
+
+print(
+    f"Storage Used: {stats['totalStorageUsed']}"
+)
+
+Common Use Cases
+
+The "stats()" method is commonly used for:
+
+- Storage monitoring
+- Usage reporting
+- Administrative dashboards
+- Resource planning
+- Billing systems
+- Capacity management
+
+Error Handling
+
+try:
+    stats = storage.stats()
+
+    print(stats)
+
+except Exception as error:
+    print(error)
+
+Best Practices
+
+- Cache statistics when possible.
+- Avoid excessive polling.
+- Use monitoring systems for production workloads.
+- Track storage growth trends over time.
+- Set alerts for storage thresholds.
+
+Notes
+
+The SDK automatically:
+
+- Authenticates requests
+- Retrieves bucket statistics
+- Parses API responses
+- Returns structured JSON data
+
+No manual API request construction is required.
+
+
+## Error Handling
+
+The Najumi Storage Python SDK uses standard Python exceptions and HTTP response validation to report errors.
+
+All API operations may raise exceptions if a request cannot be completed successfully.
+
+Basic Error Handling
+
+It is recommended to wrap SDK operations in a try-except block.
+
+try:
+    files = storage.files()
+
+    print(files)
+
+except Exception as error:
+    print(error)
+
+Upload Error Example
+
+try:
+    result = storage.upload(
+        "document.pdf"
+    )
+
+    print(result)
+
+except Exception as error:
+    print(
+        f"Upload failed: {error}"
+    )
+
+Download Error Example
+
+try:
+    storage.download(
+        "abc123xyz",
+        "file.pdf"
+    )
+
+except Exception as error:
+    print(
+        f"Download failed: {error}"
+    )
+
+Delete Error Example
+
+try:
+    storage.delete(
+        "abc123xyz"
+    )
+
+except Exception as error:
+    print(
+        f"Deletion failed: {error}"
+    )
+
+Common Error Scenarios
+
+Errors may occur due to:
+
+- Invalid Bucket ID
+- Invalid Access Key
+- Invalid Secret Key
+- Missing Files
+- Invalid Shield Identifiers
+- Network Connectivity Issues
+- API Availability Issues
+- Permission Restrictions
+
+Authentication Errors
+
+Authentication errors usually indicate invalid credentials.
+
+try:
+    stats = storage.stats()
+
+except Exception as error:
+    print(error)
+
+Verify:
+
+- Bucket ID
+- Access Key
+- Secret Key
+
+before troubleshooting further.
+
+File Errors
+
+Upload and download operations may fail when:
+
+- The file does not exist.
+- The application lacks file permissions.
+- The destination path is invalid.
+- Storage limits have been exceeded.
+
+Production Recommendations
+
+For production applications:
+
+- Log all exceptions.
+- Monitor API failures.
+- Implement retry mechanisms where appropriate.
+- Validate user input before sending requests.
+- Avoid exposing internal error details to end users.
+
+SDK Behavior
+
+The SDK automatically validates HTTP responses and raises exceptions when requests fail.
+
+This ensures that errors can be handled using standard Python exception handling patterns.
+
+
+Security Best Practices
+
+Security is a critical aspect of every application that interacts with cloud storage systems.
+
+When using the Najumi Storage Python SDK, developers should follow industry-standard security practices to protect credentials, files, and storage resources.
+
+Never Expose Secret Keys
+
+Secret Keys should always remain confidential.
+
+Never:
+
+- Commit Secret Keys to Git repositories.
+- Store Secret Keys in source code.
+- Share Secret Keys publicly.
+- Embed Secret Keys in client-side applications.
+
+Incorrect:
+
+storage = Storage(
+    bucket_id="bucket-id",
+    access_key="access-key",
+    secret_key="my-secret-key"
+)
+
+Use Environment Variables
+
+Store credentials in environment variables whenever possible.
+
+import os
+
+storage = Storage(
+    bucket_id=os.getenv(
+        "NAJUMI_BUCKET_ID"
+    ),
+    access_key=os.getenv(
+        "NAJUMI_ACCESS_KEY"
+    ),
+    secret_key=os.getenv(
+        "NAJUMI_SECRET_KEY"
+    )
+)
+
+Rotate Credentials Regularly
+
+Regular credential rotation reduces security risks.
+
+Recommended:
+
+- Rotate credentials periodically.
+- Revoke unused credentials.
+- Replace compromised credentials immediately.
+
+Use Separate Environments
+
+Maintain separate credentials for:
+
+- Development
+- Testing
+- Staging
+- Production
+
+Avoid sharing production credentials with development systems.
+
+Limit Access
+
+Only grant access to individuals and services that require it.
+
+Apply the principle of least privilege whenever possible.
+
+Protect Configuration Files
+
+If credentials are stored in configuration files:
+
+- Restrict file permissions.
+- Exclude sensitive files from version control.
+- Encrypt backups containing credentials.
+
+Secure Server Deployments
+
+For production deployments:
+
+- Use HTTPS exclusively.
+- Protect server access.
+- Monitor authentication activity.
+- Enable infrastructure security controls.
+- Keep operating systems and dependencies updated.
+
+Validate File Uploads
+
+Before uploading files:
+
+- Verify file types.
+- Validate file sizes.
+- Scan files when required.
+- Reject suspicious content.
+
+Monitor Storage Activity
+
+Regularly monitor:
+
+- Upload activity
+- Download activity
+- Deletion activity
+- Authentication failures
+- Storage growth
+
+Monitoring helps detect abnormal behavior and potential security issues.
+
+Incident Response
+
+If credentials are exposed:
+
+1. Revoke affected credentials immediately.
+2. Generate new credentials.
+3. Review account activity.
+4. Audit storage access logs.
+5. Investigate unauthorized actions.
+
+Security Responsibility
+
+While the SDK provides secure communication with the Najumi Storage API, developers remain responsible for protecting credentials, securing applications, and implementing appropriate access controls within their environments.
+
+
+
+Environment Variables
+
+Environment variables provide a secure and flexible way to manage credentials and configuration values.
+
+Using environment variables is strongly recommended for production applications.
+
+Required Variables
+
+The Najumi Storage Python SDK supports the following environment variables:
+
+Variable| Description
+NAJUMI_BUCKET_ID| Storage bucket identifier
+NAJUMI_ACCESS_KEY| Access key
+NAJUMI_SECRET_KEY| Secret key
+
+Using Environment Variables in Python
+
+import os
+from najumi_storage import Storage
+
+storage = Storage(
+    bucket_id=os.getenv(
+        "NAJUMI_BUCKET_ID"
+    ),
+    access_key=os.getenv(
+        "NAJUMI_ACCESS_KEY"
+    ),
+    secret_key=os.getenv(
+        "NAJUMI_SECRET_KEY"
+    )
+)
+
+Linux and macOS
+
+Set variables temporarily:
+
+export NAJUMI_BUCKET_ID="your-bucket-id"
+
+export NAJUMI_ACCESS_KEY="your-access-key"
+
+export NAJUMI_SECRET_KEY="your-secret-key"
+
+Verify:
+
+echo $NAJUMI_BUCKET_ID
+
+Persistent Linux Configuration
+
+Add variables to:
+
+~/.bashrc
+
+or:
+
+~/.profile
+
+Example:
+
+export NAJUMI_BUCKET_ID="your-bucket-id"
+export NAJUMI_ACCESS_KEY="your-access-key"
+export NAJUMI_SECRET_KEY="your-secret-key"
+
+Apply changes:
+
+source ~/.bashrc
+
+Windows Command Prompt
+
+set NAJUMI_BUCKET_ID=your-bucket-id
+
+set NAJUMI_ACCESS_KEY=your-access-key
+
+set NAJUMI_SECRET_KEY=your-secret-key
+
+Windows PowerShell
+
+$env:NAJUMI_BUCKET_ID="your-bucket-id"
+
+$env:NAJUMI_ACCESS_KEY="your-access-key"
+
+$env:NAJUMI_SECRET_KEY="your-secret-key"
+
+Docker
+
+Pass environment variables when running containers:
+
+docker run \
+-e NAJUMI_BUCKET_ID=your-bucket-id \
+-e NAJUMI_ACCESS_KEY=your-access-key \
+-e NAJUMI_SECRET_KEY=your-secret-key \
+your-application
+
+GitHub Actions
+
+Store credentials as GitHub Secrets.
+
+Example:
+
+env:
+  NAJUMI_BUCKET_ID: ${{ secrets.NAJUMI_BUCKET_ID }}
+  NAJUMI_ACCESS_KEY: ${{ secrets.NAJUMI_ACCESS_KEY }}
+  NAJUMI_SECRET_KEY: ${{ secrets.NAJUMI_SECRET_KEY }}
+
+Production Recommendations
+
+For production systems:
+
+- Use environment variables instead of hardcoded credentials.
+- Use secret management systems when available.
+- Rotate credentials regularly.
+- Restrict access to deployment environments.
+- Monitor authentication activity.
+
+Benefits
+
+Using environment variables helps:
+
+- Improve security
+- Simplify deployment
+- Separate configuration from source code
+- Reduce accidental credential exposure
+- Support multiple environments
+
+
+Support
+
+Najumi Tech is committed to providing a reliable developer experience and maintaining the Najumi Storage Python SDK.
+
+If you encounter issues, have questions, or would like to request new features, the following support channels are available.
+
+Documentation
+
+The official documentation and SDK resources can be found in the project repository.
+
+Repository:
+
+https://github.com/najumitech/storage-python-sdk
+
+Bug Reports
+
+If you discover a bug, please create an issue in the GitHub issue tracker.
+
+When reporting a bug, include:
+
+- SDK version
+- Python version
+- Operating system
+- Steps to reproduce
+- Expected behavior
+- Actual behavior
+- Relevant error messages
+
+Providing complete information helps accelerate issue resolution.
+
+Feature Requests
+
+Feature requests are welcome.
+
+Before submitting a request:
+
+- Review existing issues.
+- Check the project roadmap.
+- Provide a clear use case.
+- Explain the expected benefit.
+
+Community feedback helps shape future SDK releases.
+
+GitHub Issues
+
+Use GitHub Issues for:
+
+- Bug reports
+- Feature requests
+- Documentation improvements
+- SDK-related questions
+
+Issue Tracker:
+
+https://github.com/najumitech/storage-python-sdk/issues
+
+Security Issues
+
+If you discover a security vulnerability, do not publish it publicly.
+
+Instead, report it privately to:
+
+info@najumitech.com
+
+Include:
+
+- Vulnerability description
+- Potential impact
+- Reproduction details
+- Recommended mitigation (if available)
+
+Security reports are handled with priority.
+
+Community Contributions
+
+Community feedback and contributions are appreciated.
+
+Developers are encouraged to:
+
+- Report bugs
+- Improve documentation
+- Suggest enhancements
+- Submit pull requests
+- Participate in discussions
+
+Response Times
+
+Response times may vary depending on issue complexity and support volume.
+
+Critical security issues receive the highest priority.
+
+Contact
+
+For general inquiries:
+
+info@najumitech.com
+
+For project updates and announcements:
+
+https://github.com/najumitech
+
+Thank you for helping improve the Najumi Storage Python SDK.
+
+
+Contributing
+
+Contributions are welcome and appreciated.
+
+The Najumi Storage Python SDK is an open-source project, and community contributions play an important role in improving the developer experience, expanding functionality, and maintaining long-term quality.
+
+Whether you are fixing a bug, improving documentation, proposing a new feature, or optimizing existing functionality, your contributions are valuable.
+
+Ways to Contribute
+
+Developers can contribute in several ways:
+
+- Reporting bugs
+- Improving documentation
+- Submitting feature requests
+- Enhancing SDK functionality
+- Writing tests
+- Improving examples
+- Reviewing pull requests
+- Suggesting performance improvements
+
+Before Contributing
+
+Before starting work on a contribution:
+
+1. Review existing issues.
+2. Search for similar pull requests.
+3. Open an issue for major changes.
+4. Discuss significant architectural modifications before implementation.
+
+This helps avoid duplicate work and ensures alignment with project goals.
+
+Development Workflow
+
+Fork the repository:
+
+git clone https://github.com/najumitech/storage-python-sdk.git
+
+Navigate to the project directory:
+
+cd storage-python-sdk
+
+Create a feature branch:
+
+git checkout -b feature/my-feature
+
+Implement your changes and commit them:
+
+git commit -m "Add new feature"
+
+Push your branch:
+
+git push origin feature/my-feature
+
+Then open a Pull Request.
+
+Pull Request Guidelines
+
+Pull requests should:
+
+- Focus on a single change whenever possible.
+- Follow existing coding conventions.
+- Include clear commit messages.
+- Update documentation when necessary.
+- Maintain backward compatibility whenever possible.
+
+Code Quality
+
+Contributors are encouraged to:
+
+- Write clean and readable code.
+- Keep implementations simple.
+- Avoid unnecessary dependencies.
+- Follow Python best practices.
+- Preserve SDK consistency across releases.
+
+Documentation Contributions
+
+Documentation improvements are highly encouraged.
+
+Examples include:
+
+- Fixing inaccuracies
+- Improving explanations
+- Adding examples
+- Clarifying installation steps
+- Enhancing troubleshooting guidance
+
+Issue Reporting
+
+When reporting issues, include:
+
+- SDK version
+- Python version
+- Operating system
+- Error messages
+- Reproduction steps
+
+Detailed reports help maintainers resolve issues more efficiently.
+
+Community Standards
+
+All contributors are expected to:
+
+- Be respectful
+- Be constructive
+- Collaborate professionally
+- Respect differing viewpoints
+- Focus on improving the project
+
+Contributor Recognition
+
+Contributions that improve the SDK, documentation, developer experience, or project quality may be recognized in future releases and project acknowledgments.
+
+Thank you for contributing to the Najumi Storage Python SDK and helping improve the Najumi developer ecosystem.
+
+
+
+License
+
+The Najumi Storage Python SDK is released under the MIT License.
+
+MIT License
+
+Copyright (c) Najumi Tech
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to:
+
+- Use
+- Copy
+- Modify
+- Merge
+- Publish
+- Distribute
+- Sublicense
+- Sell copies of the Software
+
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+For the complete license text, see the LICENSE file included in this repository.
+
+---
+
+About Najumi Tech
+
+Najumi Storage is developed and maintained by Najumi Tech.
+
+Najumi Tech is building a modern ecosystem of cloud infrastructure, developer platforms, storage services, and software tools designed to help developers and organizations build, deploy, and scale applications more efficiently.
+
+Resources
+
+Website:
+
+https://najumitech.com
+
+GitHub:
+
+https://github.com/najumitech
+
+Email:
+
+info@najumitech.com
+
+---
+
+Thank you for using the Najumi Storage Python SDK.

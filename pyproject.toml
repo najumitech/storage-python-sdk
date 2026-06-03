@@ -1,9 +1,8 @@
 [build-system]
 requires = [
-    "setuptools>=68",
-    "wheel"
+"setuptools>=68",
+"wheel"
 ]
-
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -12,20 +11,53 @@ version = "1.0.0"
 description = "Official Python SDK for Najumi Storage"
 readme = "README.md"
 requires-python = ">=3.8"
-license = { text = "MIT" }
+license = "MIT"
 
 authors = [
-  { name = "Najumi Tech", email = "info@najumitech.com" }
+{ name = "Najumi Tech", email = "info@najumitech.com" }
+]
+
+maintainers = [
+{ name = "Najumi Tech", email = "info@najumitech.com" }
 ]
 
 keywords = [
-  "najumi",
-  "storage",
-  "cloud-storage",
-  "sdk",
-  "python"
+"najumi",
+"storage",
+"cloud",
+"cloud-storage",
+"object-storage",
+"file-storage",
+"sdk",
+"python",
+"upload",
+"download",
+"api"
+]
+
+classifiers = [
+"Development Status :: 5 - Production/Stable",
+"Intended Audience :: Developers",
+"Operating System :: OS Independent",
+"Programming Language :: Python :: 3",
+"Programming Language :: Python :: 3.8",
+"Programming Language :: Python :: 3.9",
+"Programming Language :: Python :: 3.10",
+"Programming Language :: Python :: 3.11",
+"Programming Language :: Python :: 3.12",
+"Topic :: Internet",
+"Topic :: Software Development",
+"Topic :: Software Development :: Libraries",
+"Topic :: Software Development :: Libraries :: Python Modules"
 ]
 
 dependencies = [
-  "requests>=2.31.0"
+"requests>=2.31.0"
 ]
+
+[project.urls]
+Homepage = "https://najumitech.com"
+Documentation = "https://github.com/najumitech/storage-python-sdk"
+Source = "https://github.com/najumitech/storage-python-sdk"
+Issues = "https://github.com/najumitech/storage-python-sdk/issues"
+Changelog = "https://github.com/najumitech/storage-python-sdk/releases"
