@@ -1,6 +1,5 @@
 import requests
 
-
 def download(
     self,
     shield,
@@ -10,6 +9,7 @@ def download(
         f"{self.base_url}/api/storage/download/{shield}",
         headers=self.headers(),
         stream=True,
+        timeout=60,
     )
 
     response.raise_for_status()
@@ -19,7 +19,7 @@ def download(
         "wb",
     ) as file:
         for chunk in response.iter_content(
-            chunk_size=8192
+            chunk_size=8192,
         ):
             if chunk:
                 file.write(

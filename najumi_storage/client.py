@@ -17,12 +17,13 @@ class Storage:
         self.access_key = access_key
         self.secret_key = secret_key
 
-    def headers(self):
-        return {
-            "x-bucket-id": self.bucket_id,
-            "x-access-key": self.access_key,
-            "x-secret-key": self.secret_key,
-        }
+def headers(self):
+    return {
+        "x-bucket-id": self.bucket_id,
+        "x-access-key": self.access_key,
+        "x-secret-key": self.secret_key,
+        "User-Agent": "NajumiStoragePythonSDK/1.0.0",
+    }
 
 Storage.stats = stats
 Storage.files = files

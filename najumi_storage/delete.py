@@ -1,6 +1,5 @@
 import requests
 
-
 def delete(
     self,
     shield,
@@ -11,6 +10,7 @@ def delete(
         data={
             "shield": shield,
         },
+        timeout=60,
     )
 
     response.raise_for_status()

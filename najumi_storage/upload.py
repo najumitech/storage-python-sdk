@@ -1,6 +1,5 @@
 import requests
 
-
 def upload(
     self,
     file_path,
@@ -10,7 +9,6 @@ def upload(
         file_path,
         "rb",
     ) as file:
-
         response = requests.post(
             f"{self.base_url}/api/storage/upload",
             headers=self.headers(),
@@ -20,6 +18,7 @@ def upload(
             files={
                 "file": file,
             },
+            timeout=60,
         )
 
     response.raise_for_status()
