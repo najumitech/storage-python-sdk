@@ -1,0 +1,8 @@
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.pyc
+sdk-test.txt
+sdk-downloaded.txt
+test.py

@@ -2,10 +2,7 @@ Metadata-Version: 2.4
 Name: najumi-storage
 Version: 1.0.0
 Summary: Official Python SDK for Najumi Storage
-Home-page: https://github.com/najumitech/storage-python-sdk
-Author: Najumi Tech
 Author-email: Najumi Tech <info@najumitech.com>
-Maintainer: Najumi Tech
 Maintainer-email: Najumi Tech <info@najumitech.com>
 License-Expression: MIT
 Project-URL: Homepage, https://najumitech.com
@@ -31,11 +28,7 @@ Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: requests>=2.31.0
-Dynamic: author
-Dynamic: home-page
 Dynamic: license-file
-Dynamic: maintainer
-Dynamic: requires-python
 
 ## Najumi Storage Python SDK
 

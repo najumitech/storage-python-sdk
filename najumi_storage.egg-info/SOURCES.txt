@@ -12,6 +12,5 @@ najumi_storage/upload.py
 najumi_storage.egg-info/PKG-INFO
 najumi_storage.egg-info/SOURCES.txt
 najumi_storage.egg-info/dependency_links.txt
-najumi_storage.egg-info/not-zip-safe
 najumi_storage.egg-info/requires.txt
 najumi_storage.egg-info/top_level.txt
